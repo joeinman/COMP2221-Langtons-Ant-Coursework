@@ -15,7 +15,7 @@ struct rule
     char* rules;
 };
 
-#define ant_is_at(y, x)
+#define ant_is_at(y, x) 1
 
 enum colour { WHITE, BLACK };
 
