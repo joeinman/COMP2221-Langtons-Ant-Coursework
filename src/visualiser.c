@@ -6,7 +6,8 @@
 #define cell_under_ant cell_at(ant->y, ant->x)
 cell *cells;
 
-#define cell_at(y, x) *(cells + y*max_x*sizeof(cell) + x*sizeof(cell))
+// #define cell_at(y, x) *(cells + y*max_x*sizeof(cell) + x*sizeof(cell))
+#define cell_at(y, x) cells[(y*max_x) + x]
 
 void start_visualisation(struct ant* ant) {
    setlocale(LC_ALL, "");
@@ -31,7 +32,7 @@ void visualise_and_advance(struct ant* ant) {
                ant_is_at(y,x)
                  ? direction_to_s(ant->direction)
                  : cell_at(y,x)
-                    ? "█"
+                    ? "x"
                     : " "
             );
          }

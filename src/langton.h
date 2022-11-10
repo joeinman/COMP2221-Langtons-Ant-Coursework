@@ -1,6 +1,8 @@
 #ifndef langton_h
 #define langton_h
 
+#include "visualiser.h"
+
 enum direction { UP, DOWN, LEFT, RIGHT };
 
 struct ant
