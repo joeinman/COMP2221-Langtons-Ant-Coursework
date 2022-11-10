@@ -32,7 +32,7 @@ void visualise_and_advance(struct ant* ant) {
                ant_is_at(y,x)
                  ? direction_to_s(ant->direction)
                  : cell_at(y,x)
-                    ? "x"
+                    ? "█"
                     : " "
             );
          }
