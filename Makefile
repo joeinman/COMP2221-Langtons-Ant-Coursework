@@ -11,4 +11,7 @@ visualiser.o: $(SRC_DIR)/visualiser.c $(SRC_DIR)/visualiser.h
 	gcc -c $(SRC_DIR)/visualiser.c $(CFLAGS)
 
 clean:
-	rm -rf program langton.o visualiser.o
+	rm -rf program test langton.o visualiser.o
+
+test: tests/ncurses_test.c
+	gcc -o test tests/ncurses_test.c $(CFLAGS)

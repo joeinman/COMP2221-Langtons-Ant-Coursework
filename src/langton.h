@@ -1,8 +1,6 @@
 #ifndef langton_h
 #define langton_h
 
-#include "visualiser.h"
-
 enum direction { UP, DOWN, LEFT, RIGHT };
 
 struct ant
@@ -17,7 +15,7 @@ struct rule
     char* rules;
 };
 
-#define ant_is_at(y, x) 1
+#define ant_is_at(y, x) ant->x == x && ant->y == y
 
 enum colour { WHITE, BLACK };
 

@@ -9,9 +9,7 @@ int main()
 
     // Visualisation Loop
     while(not_quit())
-    {
         visualise_and_advance(&a);
-    }
 
     // End Visualisation
     end_visualisation();

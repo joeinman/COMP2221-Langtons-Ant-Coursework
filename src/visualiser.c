@@ -3,11 +3,9 @@
 #include <stdlib.h>
 #include "visualiser.h"
 
+#define cell_at(y, x) cells[(y*max_x) + x]
 #define cell_under_ant cell_at(ant->y, ant->x)
 cell *cells;
-
-// #define cell_at(y, x) *(cells + y*max_x*sizeof(cell) + x*sizeof(cell))
-#define cell_at(y, x) cells[(y*max_x) + x]
 
 void start_visualisation(struct ant* ant) {
    setlocale(LC_ALL, "");
@@ -20,28 +18,34 @@ void start_visualisation(struct ant* ant) {
    ant->x = max_x/2;
    ant->y = max_y/2;
    ant->direction = RIGHT;
+
+   // Make All Cells Black
+   for (int y = 0; y < max_y; y++)
+      for (int x = 0; x < max_x; x++)
+         cell_at(y, x) = BLACK;
 }
 
 void visualise_and_advance(struct ant* ant) {
-      /* Draw cells and ant */
-      for (int y=0; y<max_y; y++)
+   /* Draw cells and ant */
+   for (int y = 0; y < max_y; y++)
+   {
+      for (int x = 0; x < max_x; x++)
       {
-         for (int x=0; x<max_x; x++)
-         {
-            mvprintw(y,x,
-               ant_is_at(y,x)
-                 ? direction_to_s(ant->direction)
-                 : cell_at(y,x)
-                    ? "█"
-                    : " "
-            );
-         }
+         mvprintw(y, x,
+            ant_is_at(y, x)
+              ? direction_to_s(ant->direction)
+              : cell_at(y, x) == WHITE
+                 ? "x"
+                 : " "
+         );
       }
-      refresh();
-      
-      /* Advance to next step */
-      apply_rule(&cell_under_ant, ant);
-      move_forward(ant);
+   }
+   // printw("x = %d, y = %d, direction = %d", ant->x, ant->y, ant->direction);
+   refresh();
+   
+   /* Advance to next step */
+   apply_rule(&cell_under_ant, ant);
+   move_forward(ant);
 }
 
 // Check if the user has input "q" to quit
