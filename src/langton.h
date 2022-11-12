@@ -5,15 +5,13 @@
 
 enum direction { UP, DOWN, LEFT, RIGHT };
 
-struct ant
-{
+struct ant {
     int x;
     int y;
     enum direction direction;
 };
 
-struct rule
-{
+struct rule {
     char* rules;
 };
 
