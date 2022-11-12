@@ -18,34 +18,28 @@ void start_visualisation(struct ant* ant) {
    ant->x = max_x/2;
    ant->y = max_y/2;
    ant->direction = RIGHT;
-
-   // Make All Cells Black
-   for (int y = 0; y < max_y; y++)
-      for (int x = 0; x < max_x; x++)
-         cell_at(y, x) = BLACK;
 }
 
 void visualise_and_advance(struct ant* ant) {
-   /* Draw cells and ant */
-   for (int y = 0; y < max_y; y++)
-   {
-      for (int x = 0; x < max_x; x++)
+      /* Draw cells and ant */
+      for (int y=0; y<max_y; y++)
       {
-         mvprintw(y, x,
-            ant_is_at(y, x)
-              ? direction_to_s(ant->direction)
-              : cell_at(y, x) == WHITE
-                 ? "x"
-                 : " "
-         );
+         for (int x=0; x<max_x; x++)
+         {
+            mvprintw(y,x,
+               ant_is_at(y,x)
+                 ? direction_to_s(ant->direction)
+                 : cell_at(y,x)
+                    ? "█"
+                    : " "
+            );
+         }
       }
-   }
-   // printw("x = %d, y = %d, direction = %d", ant->x, ant->y, ant->direction);
-   refresh();
-   
-   /* Advance to next step */
-   apply_rule(&cell_under_ant, ant);
-   move_forward(ant);
+      refresh();
+      
+      /* Advance to next step */
+      apply_rule(&cell_under_ant, ant);
+      move_forward(ant);
 }
 
 // Check if the user has input "q" to quit

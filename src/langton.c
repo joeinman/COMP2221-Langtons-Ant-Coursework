@@ -2,45 +2,23 @@
 
 void turn_left(struct ant *ant)
 {
-    switch (ant->direction)
-    {
-    case UP:
-        ant->direction = LEFT;
-        break;
-    case LEFT:
-        ant->direction = DOWN;
-        break;
-    case DOWN:
-        ant->direction = RIGHT;
-        break;
-    case RIGHT:
-        ant->direction = UP;
-        break;
-    }
+    if(ant->direction == UP)         ant->direction = LEFT;
+    else if(ant->direction == RIGHT) ant->direction = UP;
+    else if(ant->direction == DOWN)  ant->direction = RIGHT;
+    else if(ant->direction == LEFT)  ant->direction = DOWN;
 }
 
 void turn_right(struct ant *ant)
 {
-    switch (ant->direction)
-    {
-    case UP:
-        ant->direction = RIGHT;
-        break;
-    case RIGHT:
-        ant->direction = DOWN;
-        break;
-    case DOWN:
-        ant->direction = LEFT;
-        break;
-    case LEFT:
-        ant->direction = UP;
-        break;
-    }
+    if(ant->direction == UP)         ant->direction = RIGHT;
+    else if(ant->direction == RIGHT) ant->direction = DOWN;
+    else if(ant->direction == DOWN)  ant->direction = LEFT;
+    else if(ant->direction == LEFT)  ant->direction = UP;
 }
 
 void move_forward(struct ant *ant)
 {
-    if(ant->direction == UP)    ant->y -= 1;
+    if(ant->direction == UP)         ant->y -= 1;
     else if(ant->direction == RIGHT) ant->x += 1;
     else if(ant->direction == DOWN)  ant->y += 1;
     else if(ant->direction == LEFT)  ant->x -= 1;
@@ -48,16 +26,15 @@ void move_forward(struct ant *ant)
 
 void apply_rule(enum colour *colour, struct ant *ant)
 {
-    switch (*colour)
+    if(*colour == WHITE)
     {
-    case WHITE:
         turn_left(ant);
         *colour = BLACK;
-        break;
-    case BLACK:
+    }
+    else
+    {
         turn_right(ant);
         *colour = WHITE;
-        break;
     }
 }
 

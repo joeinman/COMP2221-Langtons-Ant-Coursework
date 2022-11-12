@@ -1,7 +1,9 @@
+#include <stdio.h>
+
 #include "langton.h"
 #include "visualiser.h"
 
-int main()
+int main(int argc, char *argv[])
 {
     // Create Ant & Start Visualisation
     struct ant a;
