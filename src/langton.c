@@ -38,7 +38,17 @@ void apply_rule(enum colour *colour, struct ant *ant)
     }
 }
 
-void apply_rule_general(enum colour *colour, struct ant *ant, struct rule *rule)
+void apply_rule_general(int *colour, struct ant *ant, struct rule *rule)
 {
-    
+    // Turn Ant
+    if(rule->rules[*colour] == 'L')
+        turn_left(ant);
+    else
+        turn_right(ant);
+
+    // Increment State
+    if (*colour < strlen(rule->rules) - 1)
+        (*colour)++;
+    else
+        *colour = 0;
 }

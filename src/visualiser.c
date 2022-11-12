@@ -14,32 +14,30 @@ void start_visualisation(struct ant* ant) {
    curs_set(FALSE);
    max_x = getmaxx(stdscr);
    max_y = getmaxy(stdscr);
-   cells = calloc(max_y*max_x, sizeof(cell));
-   ant->x = max_x/2;
-   ant->y = max_y/2;
+   cells = calloc(max_y * max_x, sizeof(cell));
+   ant->x = max_x / 2;
+   ant->y = max_y / 2;
    ant->direction = RIGHT;
 }
 
-void visualise_and_advance(struct ant* ant) {
-      /* Draw cells and ant */
-      for (int y=0; y<max_y; y++)
+void visualise_and_advance(struct ant* ant, struct rule* rules) {
+   /* Draw cells and ant */
+   for (int y = 0; y < max_y; y++)
+   {
+      for (int x = 0; x < max_x; x++)
       {
-         for (int x=0; x<max_x; x++)
-         {
-            mvprintw(y,x,
-               ant_is_at(y,x)
-                 ? direction_to_s(ant->direction)
-                 : cell_at(y,x)
-                    ? "█"
-                    : " "
-            );
-         }
+         mvprintw(y, x,
+            ant_is_at(y, x)
+              ? direction_to_s(ant->direction)
+              : "%d", cell_at(y, x)
+         );
       }
-      refresh();
-      
-      /* Advance to next step */
-      apply_rule(&cell_under_ant, ant);
-      move_forward(ant);
+   }
+   refresh();
+   
+   /* Advance to next step */
+   apply_rule_general(&cell_under_ant, ant, rules);
+   move_forward(ant);
 }
 
 // Check if the user has input "q" to quit
