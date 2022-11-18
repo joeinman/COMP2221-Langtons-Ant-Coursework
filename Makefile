@@ -1,9 +1,10 @@
+# Makefile For COMP2221 - Langtons Ant Coursework
+
 CC      = gcc
 CFLAGS  = -Wall -lncursesw -I.
 
-SRC_DIR = src
-DEPS    = $(SRC_DIR)/langton.h $(SRC_DIR)/visualiser.h
-OBJ     = $(SRC_DIR)/main.o $(SRC_DIR)/langton.o $(SRC_DIR)/visualiser.o 
+DEPS    = langton.h visualiser.h
+OBJ     = main.o langton.o visualiser.o 
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -12,4 +13,4 @@ all: $(OBJ)
 	$(CC) -o program $^ $(CFLAGS)
 
 clean:
-	rm -rf program $(SRC_DIR)/*.o
+	rm -rf program *.o
