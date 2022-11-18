@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     } else if (argc == 2) {
         rules.rules = argv[1];
     } else {
-        printf("Too many arguments supplied.\n");
+        printf("Too Many Arguments Supplied.\n");
         return 0;
     }
 
