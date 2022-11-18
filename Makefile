@@ -1,17 +1,15 @@
-CFLAGS = -Wall -lncursesw
+CC      = gcc
+CFLAGS  = -Wall -lncursesw -I.
+
 SRC_DIR = src
+DEPS    = $(SRC_DIR)/langton.h $(SRC_DIR)/visualiser.h
+OBJ     = $(SRC_DIR)/main.o $(SRC_DIR)/langton.o $(SRC_DIR)/visualiser.o 
 
-all: langton.o visualiser.o $(SRC_DIR)/main.c
-	gcc -o program $(SRC_DIR)/main.c langton.o visualiser.o $(CFLAGS)
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
-langton.o: $(SRC_DIR)/langton.c $(SRC_DIR)/langton.h
-	gcc -c $(SRC_DIR)/langton.c $(CFLAGS)
-
-visualiser.o: $(SRC_DIR)/visualiser.c $(SRC_DIR)/visualiser.h
-	gcc -c $(SRC_DIR)/visualiser.c $(CFLAGS)
+all: $(OBJ)
+	$(CC) -o program $^ $(CFLAGS)
 
 clean:
-	rm -rf program test langton.o visualiser.o
-
-test: tests/ncurses_test.c
-	gcc -o test tests/ncurses_test.c $(CFLAGS)
+	rm -rf program $(SRC_DIR)/*.o

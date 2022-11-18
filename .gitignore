@@ -1,4 +1,2 @@
 program
-test
-langton.o
-visualiser.o
+*.o
