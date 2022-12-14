@@ -8,70 +8,68 @@
 cell *cells;
 
 void start_visualisation(struct ant* ant) {
-  setlocale(LC_ALL, "");
+    setlocale(LC_ALL, "");
 
-   initscr();
-   curs_set(FALSE);
-   max_x = getmaxx(stdscr);
-   max_y = getmaxy(stdscr);
-   cells = calloc(max_y*max_x, sizeof(cell));
-   ant->x = max_x/2;
-   ant->y = max_y/2;
-   ant->direction = RIGHT;
+    initscr();
+    curs_set(FALSE);
+    max_x = getmaxx(stdscr);
+    max_y = getmaxy(stdscr);
+    cells = calloc(max_y*max_x, sizeof(cell));
+    ant->x = max_x/2;
+    ant->y = max_y/2;
+    ant->direction = RIGHT;
 }
 
 void visualise_and_advance(struct ant* ant) {
-      /* Draw cells and ant */
-      for (int y=0; y<max_y; y++)
-      {
-         for (int x=0; x<max_x; x++)
-         {
-            mvprintw(y,x,
-               ant_is_at(y,x)
-                 ? direction_to_s(ant->direction)
-                 : cell_at(y,x)
+    /* Draw cells and ant */
+    for (int y = 0; y < max_y; y++) {
+        for (int x = 0; x < max_x; x++) {
+            mvprintw(y, x,
+                ant_is_at(y, x)
+                ? direction_to_s(ant->direction)
+                : cell_at(y, x)
                     ? "█"
                     : " "
             );
-         }
-      }
-      refresh();
-      
-      /* Advance to next step */
-      apply_rule(&cell_under_ant, ant);
-      move_forward(ant);
+        }
+    }
+    refresh();
+
+    /* Advance to next step */
+    apply_rule(&cell_under_ant, ant);
+    move_forward(ant);
 }
 
 void visualise_and_advance_general(struct ant* ant, struct rule* rules) {
-   /* Draw cells and ant */
-   for (int y = 0; y < max_y; y++) {
-      for (int x = 0; x < max_x; x++) {
-         mvprintw(y, x,
-            ant_is_at(y, x)
-            ? direction_to_s(ant->direction)
-            : "%c", (char)cell_at(y, x) + 97); // Map To Lowercase ASCII
-      }
-   }
-   refresh();
+    /* Draw cells and ant */
+    for (int y = 0; y < max_y; y++) {
+        for (int x = 0; x < max_x; x++) {
+            mvprintw(y, x,
+                ant_is_at(y, x)
+                ? direction_to_s(ant->direction)
+                : "%c", (char)cell_at(y, x) + 97); // Map To Lowercase ASCII
+        }
+    }
+    refresh();
 
-   /* Advance to next step */
-   apply_rule_general(&cell_under_ant, ant, rules);
-   move_forward(ant);
+    /* Advance to next step */
+    apply_rule_general(&cell_under_ant, ant, rules);
+    move_forward(ant);
 }
 
 // Check if the user has input "q" to quit
 bool not_quit() {
-   return 'q' != getch();
+    return 'q' != getch();
 }
 
 void end_visualisation() {
-   free(cells);
-   endwin();
+    free(cells);
+    endwin();
 }
 
 const char* direction_to_s(enum direction d) {
-   return UP   == d ? "^" :
-          DOWN == d ? "v" :
-          LEFT == d ? "<" :
-          /* else */  ">" ;
+    return UP   == d ? "^" :
+           DOWN == d ? "v" :
+           LEFT == d ? "<" :
+           /* else */  ">";
 }

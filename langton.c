@@ -18,23 +18,35 @@ void turn_right(struct ant *ant) {
 
 void move_forward(struct ant *ant) {
     if (ant->direction == UP) {
-        if(ant->y == 0) ant->y = getmaxy(stdscr) - 1;
-        else ant->y -= 1;
+        if (ant->y == 0) {
+            ant->y = getmaxy(stdscr) - 1;
+        } else {
+            ant->y -= 1;
+        }
     }
 
-    else if (ant->direction == RIGHT) {
-        if(ant->x == getmaxx(stdscr) - 1) ant->x = 0;
-        else ant->x += 1;
+    if (ant->direction == RIGHT) {
+        if (ant->x == getmaxx(stdscr) - 1) {
+            ant->x = 0;
+        } else {
+            ant->x += 1;
+        }
     }
 
-    else if (ant->direction == DOWN) {
-        if(ant->y == getmaxy(stdscr) - 1) ant->y = 0;
-        else ant->y += 1;
+    if (ant->direction == DOWN) {
+        if (ant->y == getmaxy(stdscr) - 1) {
+            ant->y = 0;
+        } else {
+            ant->y += 1;
+        }
     }
 
-    else if (ant->direction == LEFT) {
-        if(ant->x == 0) ant->x = getmaxx(stdscr) - 1;
-        else ant->x -= 1;
+    if (ant->direction == LEFT) {
+        if (ant->x == 0) {
+            ant->x = getmaxx(stdscr) - 1;
+        } else {
+            ant->x -= 1;
+        }
     }
 }
 
@@ -50,14 +62,16 @@ void apply_rule(enum colour *colour, struct ant *ant) {
 
 void apply_rule_general(int *colour, struct ant *ant, struct rule *rule) {
     // Turn Ant
-    if (rule->rules[*colour] == 'L')
+    if (rule->rules[*colour] == 'L') {
         turn_left(ant);
-    else
+    } else {
         turn_right(ant);
+    }
 
     // Increment State
-    if (*colour < (int)strlen(rule->rules) - 1)
+    if (*colour < (int)strlen(rule->rules) - 1) {
         (*colour)++;
-    else
+    } else {
         *colour = 0;
+    }
 }

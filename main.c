@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 
     // Check Command Line Input
     if (argc == 1) {
-        rules.rules = "LR"; // Default Rule Set
+        rules.rules = "LR";  // Default Rule Set
     } else if (argc == 2) {
         rules.rules = argv[1];
     } else {
