@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     } else if (argc == 2) {
         rules.rules = argv[1];
     } else {
-        printf("Usage: ./ant [RULES] (Default Rule Set Is 'LR'\n");
+        printf("Usage: ./ant [RULES] (Default Rule Set Is 'LR')\n");
         return 0;
     }
 

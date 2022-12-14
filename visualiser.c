@@ -43,20 +43,20 @@ void visualise_and_advance(struct ant* ant) {
 }
 
 void visualise_and_advance_general(struct ant* ant, struct rule* rules) {
-    /* Draw cells and ant */
-    for (int y = 0; y < max_y; y++) {
-        for (int x = 0; x < max_x; x++) {
-            mvprintw(y, x,
-                ant_is_at(y, x)
-                ? direction_to_s(ant->direction)
-                : "%c", (char)cell_at(y, x) + 97); // Map To Lowercase ASCII
-        }
-    }
-    refresh();
+   /* Draw cells and ant */
+   for (int y = 0; y < max_y; y++) {
+      for (int x = 0; x < max_x; x++) {
+         mvprintw(y, x,
+            ant_is_at(y, x)
+            ? direction_to_s(ant->direction)
+            : "%c", (char)cell_at(y, x) + 97); // Map To Lowercase ASCII
+      }
+   }
+   refresh();
 
-    /* Advance to next step */
-    apply_rule_general(&cell_under_ant, ant, rules);
-    move_forward(ant);
+   /* Advance to next step */
+   apply_rule_general(&cell_under_ant, ant, rules);
+   move_forward(ant);
 }
 
 // Check if the user has input "q" to quit
