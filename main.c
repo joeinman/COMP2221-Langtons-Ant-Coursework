@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 
     // Visualisation Loop
     while (not_quit())
-        visualise_and_advance(&a);
+        visualise_and_advance_general(&a, &rules);
 
     // End Visualisation
     end_visualisation();

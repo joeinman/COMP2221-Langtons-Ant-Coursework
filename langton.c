@@ -1,5 +1,6 @@
 #include <string.h>
 #include "langton.h"
+#include <ncurses.h>
 
 void turn_left(struct ant *ant) {
     if      (ant->direction == UP)    ant->direction = LEFT;

@@ -1,1 +1,1 @@
-# COMP221 Langtons Ant Coursework
+# COMP2221 Langtons Ant Coursework
