@@ -27,7 +27,7 @@ void move_forward(struct ant *ant) {
         else ant->x += 1;
     }
 
-    if (ant->direction == DOWN) {
+    else if (ant->direction == DOWN) {
         if(ant->y == getmaxy(stdscr) - 1) ant->y = 0;
         else ant->y += 1;
     }
