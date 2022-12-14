@@ -10,7 +10,11 @@ OBJ     = main.o langton.o visualiser.o
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 all: $(OBJ)
-	$(CC) -o program $^ $(CFLAGS)
+	$(CC) -o ant $^ $(CFLAGS)
+
+library:
+	$(CC) *.c -c -fPIC $(CFLAGS)
+	$(CC) *.o -shared -o libant.so $(CFLAGS)
 
 clean:
-	rm -rf program *.o
+	rm -rf ant libant.so *.o

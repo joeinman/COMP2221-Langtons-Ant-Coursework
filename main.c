@@ -8,11 +8,11 @@ int main(int argc, char *argv[]) {
 
     // Check Command Line Input
     if (argc == 1) {
-        rules.rules = "LR";
+        rules.rules = "LR"; // Default Rule Set
     } else if (argc == 2) {
         rules.rules = argv[1];
     } else {
-        printf("Too Many Arguments Supplied.\n");
+        printf("Usage: ./ant [RULES] (Default Rule Set Is 'LR'\n");
         return 0;
     }
 
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 
     // Visualisation Loop
     while (not_quit())
-        visualise_and_advance(&a, &rules);
+        visualise_and_advance(&a);
 
     // End Visualisation
     end_visualisation();

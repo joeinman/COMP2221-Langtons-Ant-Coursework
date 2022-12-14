@@ -1,3 +1,4 @@
+#include <string.h>
 #include "langton.h"
 
 void turn_left(struct ant *ant) {
