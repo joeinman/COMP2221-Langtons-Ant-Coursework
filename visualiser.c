@@ -47,7 +47,7 @@ void visualise_and_advance_general(struct ant* ant, struct rule* rules) {
             mvprintw(y, x,
                 ant_is_at(y, x)
                 ? direction_to_s(ant->direction)
-                : "%c", (char)cell_at(y, x) + 97); // Map To Lowercase ASCII
+                : "%c", (char)cell_at(y, x) + 65); // Map To Uppercase Alphabet ASCII
         }
     }
     refresh();
